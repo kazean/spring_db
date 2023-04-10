@@ -53,5 +53,41 @@ insert into member(member_id, money) values('newId2', 20000);
 ```
 - 세션1,2 조회
 3. 커밋 - commit
-  
 - 롤백 - rollback
+
+## 6. 트랜잭션 - DB예제4 - 계좌이체
+- 계좌이체 정상
+```
+set autocommit true;
+delete from member;
+insert into member(member_id, money) values ('memberA', 10000);
+insert into member(member_id, money) values ('memberB', 10000);
+```
+- 계좌이체 실행 SQL-성공
+```
+set autocommit false;
+update member set money=10000-2000 where member_id = 'memberA';
+update member set money=10000+2000 where member_id = 'memberB';
+```
+- 계좌이체 문제 상황 - 커밋
+```
+set autocommit false;
+update member set money=10000-2000 where member_id = 'memberA';
+update member set money=10000+2000 where member_iddd = 'memberB';
+```
+> !데이터 정합성 문제
+- 계좌이체 문제 상황 - 롤백
+```
+set autocommit false;
+update member set money=10000-2000 where member_id = 'memberA';
+update member set money=10000+2000 where member_iddd = 'memberB';
+```
+> 문제시 데이터 복구
+- 정리
+> 원자성: 트랜잭션 내에서 실행한 작업들은 마치 하나의 작업인 것처럼 모두 성공하거나 모두 실패
+> 오토커밋: 계좌이체 중간에 실패하면 심각한 문제 발생
+> 트랜잭션 시작: 이런 종류의 작업은 꼭 수동 커밋 모드를 사용해서 수동으로 커밋, 롤백할 수 있도록 해야한다.
+
+## 7. DB락 - 개념이해
+세션1이 트랜잭션을 시작하고 데이터를 수정하는 동안 아직 커밋을 수행하지 않았는데, 세션2에서 동시에 같은 데이터를 수정하게 되면 여러가지 문제가 발생.
+> 트랜잭션 원자성이 깨지는 것이다.
