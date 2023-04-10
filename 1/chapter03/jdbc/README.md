@@ -1,4 +1,4 @@
-# [실습] 3. 트랜잭션 이
+# [실습] 3. 트랜잭션 이해
 ## 1. 트랜잭션 - 개념이해
 - 데이터를 저장할 때, 데이터베이스에 저장하는 이유는 뭘까?
 - 트랜잭션 ACID
@@ -30,7 +30,28 @@ SERIALIZABLE
 - 자동 커밋
 > 자동 커밋으로 설정하면 각각의 쿼리 실행 직후에 자동으로 커밋을 호출한다.
 - 자동 커밋 설정
-> set autotrace true;
+> set autocommit true;
 - 수동 커밋 설정
-> set autotrace false;
-수동 커밋모드로 설정하는 것을 트랜잭션을 시작한다고 표현할 수 있다
+> set autocommit false;
+>> 수동 커밋모드로 설정하는 것을 트랜잭션을 시작한다고 표현할 수 있다
+
+## 5. 트랜잭션 - DB예제3 - 트랜잭션 실습
+1. 기본 데이터 입력
+- h2 session 2개
+- 데이터 초기화 SQL
+```
+set autocommit true;
+delete from member;
+insert into member(member_id, money) values ('oldId', 10000);
+```
+2. 신규 데이터 추가 - 커밋 전
+- 세션1
+```
+set autocommit false;
+insert into member(member_id, money) values('newId1', 10000);
+insert into member(member_id, money) values('newId2', 20000);
+```
+- 세션1,2 조회
+3. 커밋 - commit
+  
+- 롤백 - rollback
