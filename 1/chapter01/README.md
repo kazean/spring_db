@@ -1,4 +1,4 @@
-# [실습] 1. JDBC 이해
+# [이론] 1. JDBC 이해
 ## 1. 프로젝트 생성
 - spring : 3.0, jdk17
 - Gradle Project, Package: hello.jdbc, Group: hello, Artifact: jdbc
