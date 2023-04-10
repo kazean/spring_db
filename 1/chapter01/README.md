@@ -12,16 +12,7 @@ username: sa
 url: (최초)jdbc:h2:~/test, (이후) jdbc:h2:tcp://localhost/~/test
 ```
 - Member table create sql
-```
-drop table member if exists cascade;
-create table member (
-                        member_id varchar(10),
-                        money integer not null default 0,
-                        primary key (member_id)
-);
-insert into member(member_id, money) values ('hi1',10000);
-insert into member(member_id, money) values ('hi2',20000);
-```
+> member_id(varchar), moeny(integer)
 
 ## 3. JDBC 이해
 - jdbc 등장 이유
@@ -67,7 +58,7 @@ static final String URL, USERNAME, PASSWORD
 - hello.jdbc.connection.DBConnectionUtil
 ```
 static Connection getConnection() {
-    DriverManager.getConection(URL, USERNAME, PASSWORD)
+    Connection conn = DriverManager.getConection(URL, USERNAME, PASSWORD)
 }
 ```
 > 데이터베이스에 연결하려면 JDBC가 제공하는 `DrigetManager.getConnection(..)`사용
@@ -78,14 +69,6 @@ JDBC가 제공하는 DriverManager는 라이브러리에 등록된 드라이브�
 
 ## 6. JDBC 개발 - 등록
 - member table 만들기
-```
-drop table member if exists cascade;
-create table member (
-member_id varchar(10),
-money integer not null default 0,
-primary key (member_id)
-);
-```
 - hello.jdbc.domain.Member
 > memberId, money
 - hello.jdbc.repository.MemberRepositoryV0 - 회원등록
@@ -132,7 +115,7 @@ public Member findByid(String memberId) {
 	}
 }
 ```
-> rs = pstmt.executeQuery(): 데이터 변경할 때는 executeUpdate()를 사용하지만, 데이터 조회시 executeQuery()
+> rs = pstmt.executeQuery(): 데이터 변경할 때는 executeUpdate()를 사용하지만, 데이터 조회시 executeQuery(): ResultSet
 - executeQuery()
 ```
 ResultSet executeQuery() throws SQLException;
