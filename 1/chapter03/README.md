@@ -1,4 +1,4 @@
-# [실습] 3. 트랜잭션 이해
+# [이론] 3. 트랜잭션 이해
 ## 1. 트랜잭션 - 개념이해
 - 데이터를 저장할 때, 데이터베이스에 저장하는 이유는 뭘까?
 - 트랜잭션 ACID
@@ -38,37 +38,15 @@ SERIALIZABLE
 ## 5. 트랜잭션 - DB예제3 - 트랜잭션 실습
 1. 기본 데이터 입력
 - h2 session 2개
-- 데이터 초기화 SQL
-```
-set autocommit true;
-delete from member;
-insert into member(member_id, money) values ('oldId', 10000);
-```
 2. 신규 데이터 추가 - 커밋 전
-- 세션1
-```
-set autocommit false;
-insert into member(member_id, money) values('newId1', 10000);
-insert into member(member_id, money) values('newId2', 20000);
-```
+- 세션1 - 수동커밋, 데이터 추가
 - 세션1,2 조회
 3. 커밋 - commit
 - 롤백 - rollback
 
 ## 6. 트랜잭션 - DB예제4 - 계좌이체
 - 계좌이체 정상
-```
-set autocommit true;
-delete from member;
-insert into member(member_id, money) values ('memberA', 10000);
-insert into member(member_id, money) values ('memberB', 10000);
-```
 - 계좌이체 실행 SQL-성공
-```
-set autocommit false;
-update member set money=10000-2000 where member_id = 'memberA';
-update member set money=10000+2000 where member_id = 'memberB';
-```
 - 계좌이체 문제 상황 - 커밋
 ```
 set autocommit false;
@@ -77,11 +55,6 @@ update member set money=10000+2000 where member_iddd = 'memberB';
 ```
 > !데이터 정합성 문제
 - 계좌이체 문제 상황 - 롤백
-```
-set autocommit false;
-update member set money=10000-2000 where member_id = 'memberA';
-update member set money=10000+2000 where member_iddd = 'memberB';
-```
 > 문제시 데이터 복구
 - 정리
 > 원자성: 트랜잭션 내에서 실행한 작업들은 마치 하나의 작업인 것처럼 모두 성공하거나 모두 실패
@@ -96,18 +69,8 @@ update member set money=10000+2000 where member_iddd = 'memberB';
 > 세션1 memberA의 money 500 변경 > 세션2 memberA 변경시도 (대기) > 세션1 커밋 > 세션2 락 획득 후 변경 진행
 
 ## 8. DB락 - 변경
-- 기본 데이터
-```
-set autocommit true;
-delete from member;
-insert into member(member_id, money) values ('memberA', 10000);
-```
-- 세션1
-```
-set autocommit false;
-update member set money=500 where member_id = 'memberA'
-```
-- 세션2
+- 세션1 - 데이터 수정
+- 세션2 - 같은 데이터 수정
 ```
 SET LOCK_TIMEOUT 60000;
 set autocommit false;
@@ -122,22 +85,8 @@ update member set money=1000 where member_id = 'memberA'
 일반적인 조회는 락을 사용하지 않는다.
 - 조회와 락
 > 데이터를 조회할 때도 락을 획득하고 싶을 때, `select for update` 
-- 기본 데이터
-```
-set autocommit true;
-delete from member;
-insert into member(member_id, money) values ('memberA', 10000);
-```
-- 세션1
-```
-set autocommit false;
-select * from member where member_id = 'memberA' for update;
-```
-- 세션2
-```
-set autocommit false;
-update member set money=1000 where member_id = 'memberA'
-```
+- 세션1 - select for update
+- 세션2 - 같은 데이터 수정
 > 대기
 - 세션2 락 획득: 세션1을 커밋하면 세션1이 커밋되면서 락을 반납한다. 이후 세션2 락 획득 후 변경
 - 정리
@@ -166,22 +115,7 @@ update(Connection con, String memberId, int money)
 1. 커넥션 유지가 필요한 두 메서드는 파라미터로 넘어온 con 사용, con = getConnection() 코드가 있으면 안된다.
 2. 커넥션 유지가 필요한 두 메서드는 리포지토리에서 커넥션을 닫으면 안된다.
 - hello.jdbc.service.MemberServiceV2
-```
-private final DataSource dataSource;
-
-accountTransfer(fromId, toId, money)  
-con = dataSource.getConnection;
-try{
-	con.setAutoCommit(false);
-	bizLogic(con, fromId, toId, money);
-	con.commit();
-} catch (Exception e) {
-	con.rollback();
-} finally {
-	realse(con)
-}
-```
-> con.setAutoCommit(false); //트랜잭션 시작
+> DataSource, con.setAutoCommit(false), con.commit(), con.rollback() //트랜잭션 시작
 - hello.jdbc.service.MemberServiceV2Test
 > accountTransfer(), accountTransEx()
 >> 트랜잭션 덕분에 계좌이체가 실패할 때 롤백을 수행해서 모든 데이터를 정상적으로 초기화 할 수 있게 되었다.
