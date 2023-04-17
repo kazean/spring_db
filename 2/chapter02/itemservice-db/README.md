@@ -158,15 +158,15 @@ https://docs.spring.io/spring-framework/docs/current/reference/html/dataaccess.h
 
 - JdbcTemplate 사용법 정리
 https://docs.spring.io/spring-framework/docs/current/reference/html/dataaccess.html#jdbc-JdbcTemplate
-> 조회
->> 단건 조회 - 숫자 조회  / 문자 조회 / 객체 조회
->>> jdbcTemplate.queryForObject("select count(*) from dual, Integer.class)  
->> 목록 조회 - 객체
->>> jdbcTemplate.query(sql, rowMapper());
-> 변경(INSERT, UPDATE, DELETE)
->> jdbcTemplate.update()
-> 기타 기능
->> 임의의 SQL 을 실행할 때는 execute() 사용, DDL, 스토어드 프로시저 등
+- 조회
+> 단건 조회 - 숫자 조회  / 문자 조회 / 객체 조회
+>> jdbcTemplate.queryForObject("select count(*) from dual, Integer.class)
+- 목록 조회 - 객체
+> jdbcTemplate.query(sql, rowMapper());
+- 변경(INSERT, UPDATE, DELETE)
+> jdbcTemplate.update()
+- 기타 기능
+> 임의의 SQL 을 실행할 때는 execute() 사용, DDL, 스토어드 프로시저 등
 
 ## 10. 정리
 실무에서 가장 간단하고 실용적인 방법  
