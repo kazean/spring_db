@@ -146,7 +146,7 @@ https://docs.spring.io/spring-framework/docs/current/reference/html/dataaccess.h
 https://docs.spring.io/spring-framework/docs/current/reference/html/dataaccess.html#jdbc-JdbcTemplate
 > 조회
 >> 단건 조회 - 숫자 조회  / 문자 조회 / 객체 조회
->>> jdbcTemplate.queryForObject("select count(*) from dual, Integer.class)  
+>>> jdbcTemplate.queryForObject("select count(*) from dual, Integer.class)
 >> 목록 조회 - 객체
 >>> jdbcTemplate.query(sql, rowMapper());
 > 변경(INSERT, UPDATE, DELETE)
