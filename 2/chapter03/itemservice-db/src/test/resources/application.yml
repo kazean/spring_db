@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: test
+  datasource:
+    generate-unique-name: false
+#    url: jdbc:h2:tcp://localhost/~/testcase
+#    username: sa
+logging:
+  level:
+    org.springframework.jdbc: debug
