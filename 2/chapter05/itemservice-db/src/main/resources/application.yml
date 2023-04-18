@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+#    Mybatis JdbcTemplate sql log
+mybatis:
+  type-aliases-package: hello.itemservice.domain
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    hello.itemservice.repository.mybatis: trace
+#    org.springframework.jdbc: debug
