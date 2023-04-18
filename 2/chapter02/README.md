@@ -108,7 +108,7 @@ BeanPropertyRowMapper는 언더스코어 표기법을 카멜로 자동 변환
 ## 7.JdbcTemplate - 이름 지정 파라미터 3
 - JdbcTemplateV2Config, ItemServiceApplication - 변경
 
-## 8.JdbcTemplate - SimpleJdbcTemplate
+## 8.JdbcTemplate - SimpleJdbcInsert
 JdbcTemplate은 INSERT SQL 을 직접 작성하지 않아도 되도록 `SimpleJdbcInsert`라는 편리한 기능을 제공한다
 - JdbcTemplateItemRepositoryV3
 ```
