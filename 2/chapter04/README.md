@@ -174,5 +174,5 @@ Optional<Item> findById(Long id);
 <select id="~" resultMap="userResultMap">
 ```
 - 복잡한 결과 매핑
-> <association>, <collection>
+> ```<association>, <collection>```
 >> JPA는 객체와 관계형 데이터베이스를 ORM 개념으로 매핑하기 때문에 이런 부분이 자연스럽지만, Mybatis에서는 공수가 많고 선응 최적화하기 어렵다.
