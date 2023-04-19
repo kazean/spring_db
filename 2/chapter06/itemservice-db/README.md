@@ -11,7 +11,7 @@ JPARepository
 - JpaRepository 사용법
 > public interface ItemRepository extends JpaRepository<Member, Long>
 - 스프링 데이터 JPA가 구현 클래스르 대신 생성
-- `쿼리 메소드 기능`
+- `쿼리 메소드 기능`  
 인터페이스에 메소드만 적어두면, 메소드 이름을 분석해서 쿼리를 자동으로 만들고 실행해주는 기능
 - 스프링 데이터 JPA
 > List<Member> findByUsernameAndAgeGreaterThan(String username, int age);
@@ -23,4 +23,7 @@ EXISTS: exists...By: boolean
 DISTINCT: findDistinct, findMemberDistinctBy  
 LIMIT: findFirst3, findFirst, findTop, findTop3
 - 쿼리 메소드 필터 조건
-
+> https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.querymethods.
+query-creation
+> https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limitquery-
+result
