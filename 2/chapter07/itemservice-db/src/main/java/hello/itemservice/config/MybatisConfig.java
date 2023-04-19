@@ -1,21 +1,22 @@
 package hello.itemservice.config;
 
 import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.jpa.JpaItemRepositoryV1;
-import hello.itemservice.repository.jpa.JpaItemRepositoryV3;
+import hello.itemservice.repository.jdbctemplate.JdbcTemplateItemRepositoryV3;
+import hello.itemservice.repository.mybatis.ItemMapper;
+import hello.itemservice.repository.mybatis.MybatisRepository;
 import hello.itemservice.service.ItemService;
 import hello.itemservice.service.ItemServiceV1;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+
 @Configuration
 @RequiredArgsConstructor
-public class QuerydslConfig {
+public class MybatisConfig {
 
-    private final EntityManager em;
-
+    private final ItemMapper itemMapper;
     @Bean
     public ItemService itemService() {
         return new ItemServiceV1(itemRepository());
@@ -23,6 +24,7 @@ public class QuerydslConfig {
 
     @Bean
     public ItemRepository itemRepository() {
-        return new JpaItemRepositoryV3(em);
+        return new MybatisRepository(itemMapper);
     }
+
 }
