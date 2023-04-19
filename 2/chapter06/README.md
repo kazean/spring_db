@@ -1,4 +1,4 @@
-# [이론] 6.데이터 접근 기술 - 스프링 데이터 JPA
+# [실습] 6.데이터 접근 기술 - 스프링 데이터 JPA
 ## 1.스프링 데이터 JPA 소개1 - 등장 이유
 ## 2.스프링 데이터 JPA 소개2 - 기능
 ## 3.스프링 데이터 JPA 주요 기능
@@ -52,7 +52,6 @@ public interface SprinDataJpaItemRepository extends JpaRepository<Item, Long> {
 ## 5.스프링 데이터 JPA 적용2
 - JpaItemRepositoryV2
 > private final SpringDataJpaItemRepository repository
-
 - 의존관계와 구조
 > ItemService는 ItemRepository에 의존하기 때문에 ItemServie에서 SpringDataJpaItemRepository를 그대로 사용할 수 없다.  
 Service 코드 변경없이 DI 구현하려면?
@@ -60,7 +59,6 @@ Service 코드 변경없이 DI 구현하려면?
 - 런타임 객체 의존 관계
 > ItemService > ItemRepositoryV2 > SpringDataJpa
 - SpringDataJpaConfig, ItemServiceApplication
-
 - 예외 변환
 > 스프링 데이터 JPA도 스프링 예외 추상화를 지원한다. 스프링 데이터 JPA가 만들어주는 프록시에서 이미 예외 변환을 처리하기 때무넹, @Repository와 관계없이 예외가 변환된다.
 - 주의! - 하이버네이트 버그

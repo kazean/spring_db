@@ -11,25 +11,24 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Transactional
 @RequiredArgsConstructor
-public class JpaItemRepositoryV1 implements ItemRepository {
-    private final EntityManager em;
+public class JpaItemRepositoryV2 implements ItemRepository {
+    private final SpringDataJpaItemRepository repository;
 
     @Override
     public Item save(Item item) {
-        em.persist(item);
+        repository.save(item);
         return item;
     }
 
     @Override
     public void update(Long itemId, ItemUpdateDto updateParam) {
-        Item findItem = em.find(Item.class, itemId);
+        Item findItem = repository.findById(itemId).orElseThrow();
         findItem.setItemName(updateParam.getItemName());
         findItem.setPrice(updateParam.getPrice());
         findItem.setQuantity(updateParam.getQuantity());
@@ -37,8 +36,7 @@ public class JpaItemRepositoryV1 implements ItemRepository {
 
     @Override
     public Optional<Item> findById(Long id) {
-        Item item = em.find(Item.class, id);
-        return Optional.ofNullable(item);
+        return repository.findById(id);
     }
 
     @Override
@@ -46,26 +44,15 @@ public class JpaItemRepositoryV1 implements ItemRepository {
         String itemName = cond.getItemName();
         Integer maxPrice = cond.getMaxPrice();
 
-        String jpql = "select i from Item i";
-        if (StringUtils.hasText(itemName) || maxPrice != null) {
-            jpql += " where";
+        if (StringUtils.hasText(itemName) && maxPrice != null) {
+            return repository.findByItemNameLikeAndPriceLessThanEqual("%" + itemName + "%", maxPrice);
+//            return repository.findItems("%" + itemName + "%", maxPrice);
+        }else if (StringUtils.hasText(itemName)) {
+            return repository.findByItemNameLike("%" + itemName + "%");
+        } else if (maxPrice != null) {
+            return repository.findByPriceGreaterThanEqual(maxPrice);
+        } else {
+            return repository.findAll();
         }
-
-        boolean andFlag = false;
-        if (StringUtils.hasText(itemName)) {
-            jpql += " i.itemName like concat('%', :itemName, '%')";
-            andFlag = true;
-        }
-
-        if (maxPrice != null) {
-            if (andFlag)    jpql += " and";
-            jpql += " i.price <= :maxPrice";
-        }
-        log.info("jpql={}", jpql);
-
-        TypedQuery<Item> query = em.createQuery(jpql, Item.class);
-        if (StringUtils.hasText(itemName))  query.setParameter("itemName", itemName);
-        if (maxPrice != null) query.setParameter("maxPrice", maxPrice);
-        return query.getResultList();
     }
 }
