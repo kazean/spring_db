@@ -91,7 +91,7 @@ List<Item> findAll(ItemSearchCond itemSearch);
 
 ## 4.Mybatis 적용2 - 설정과 실행
 - MybatisRepository
-> private ifanl ItemMapper itemMapper;
+> private final ItemMapper itemMapper;
 - MybatisConfig, ItemServiceApplication - 변경
 - 테스트 
 
@@ -155,7 +155,7 @@ Optional<Item> findById(Long id);
 > `@Select, @Insert, @Update, @Delete` 이 경우 XML에는 제거, 동적 SQL이 해결되지 않으므로 간단한 경우에만 사용
 - 문자열 대체(String Substitution)
 > ${}
->> !주의 ${}를 사용하면 SQL 읹ㄱ션 공격을 당할 수 있다. 가급적 사용X
+>> !주의 ${}를 사용하면 SQL 인젝션 공격을 당할 수 있다. 가급적 사용X
 - 재사용 가능한 SQL 조각
 ```
 <sql id="userColumns> ${alias}.id, ${alias}.username </sql>
