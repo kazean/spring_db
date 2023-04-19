@@ -41,7 +41,7 @@ clean.doLast {
 	file(querydslDir).deleteDir()
 }
 ```
-> querydsl-jpa, querydls-apt, jakarta.annotation-api, jakarta.persistence-api
+> querydsl-jpa, querydsl-apt, jakarta.annotation-api, jakarta.persistence-api
 - 검증 - Q타입 생성 확인 방법
 1. Gradle
 - Gradle > Tasks > build > clean
