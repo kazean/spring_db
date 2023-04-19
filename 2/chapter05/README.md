@@ -13,7 +13,7 @@ jakarta-persistence-api: JPA 인터페이스
 spring-data-jpa: 스프링 데이터 JPA 라이브러리
 - application.properties
 > org.hibernateSQL=DEBUG: 하이버네이트가 생성하고 실행하는 SQL 확인  
-org.hibernate.type.descriptor.sql.BasicBinder=TRACE: SQL에 바인딩 되는 파라미터 확인  
+org.hibernate.type.descriptor.sql.BasicBinder=TRACE: SQL에 바인딩 되는 파라미터 확인  > org.hibernate.orm.jdbc.bind: trace
 !spring.jpa.show-sql=true: System.out을 통해 출력 권장X
 
 ## 5.JPA 적용1 - 개발
