@@ -1,4 +1,4 @@
-# [이론] 4. 데이터 접근 기술 - Mybatis
+# [이론] 4. 데이터 접근 기술 - Mybatis 
 ## 1.Mybatis 소개
 JdbcTemplate 보다 더 많은 기능을 제공하는 SQL Mapper 이다.  
 SQL을 XML에 편리하게 작성할 수 있고 동적 쿼리를 매우 편리하게 작성할 수 있다.
