@@ -1,4 +1,4 @@
-# [이론] 7.데이터 접근 기술 - Querydsl
+# [이론] 7.데이터 접근 기술 - Querydsl 
 ## 1.Querydsl 소개1 - 기존 방식의 문제점
 ## 2.Querydsl 소개2 - 해결
 ## 3.Querydsl 설정
