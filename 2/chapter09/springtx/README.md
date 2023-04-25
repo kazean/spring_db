@@ -16,7 +16,7 @@ tx.begin()/commit()/rollback()
 ```
 >> 스프링은 이런 문제 해결을 위해 트랜잭션 추상화를 제공한다. `PlatformTransactionManager`  
 추상화뿐만 아니라, 트랜잭션 매니저의 구현체도 제공: DataSourceTransactionManager, JpaTransactionManager  
-어떤 접근 기술을 사용하는지 자동 인식해서 적적한 트랜잭션 매니저를 선택해서 스프링 빈으로 ㄷㅇ록
+어떤 접근 기술을 사용하는지 자동 인식해서 적적한 트랜잭션 매니저를 선택해서 스프링 빈으로 등록
 - 스프링 트랜잭션 사용 방식
 > 선언적 트랜잭션 관리 vs 프로그래밍 방식 트랜잭션 관리
 - 선언적 트랜잭션과 AOP
@@ -95,7 +95,7 @@ static class LevelService {
 > 클래스보단 메서드가 더 구체적
 - 2. 클래스에 적용하면 메서드는 자동 적용
 > cf, readOnly=false가 기본 옵션
-- TransactionSynchronizationManager.isCurrentTranstionReadOnly(): readOnly 값 반환
+- TransactionSynchronizationManager.isCurrentTransationReadOnly(): readOnly 값 반환
 - 인터페이스에 @Transactional 적용
 1. 클래스의 메서드
 2. 클래스의 타입
@@ -138,7 +138,7 @@ externalCall(): 트랜잭션X > this.internal() 적용 X
 > 프록시를 사용하면 메서드 내부 호출에 프록시를 적용할 수 없다.
 >> 내부 호출을 피하기 위한 가장 단순한 방법은 inernal메서드를 별도 클래스로 분리
 
-## 6.트랜잭션 AOP 주의 사항 - 프록시 내부 호출22
+## 6.트랜잭션 AOP 주의 사항 - 프록시 내부 호출2
 - InternalCallV2Test
 > CallService, InternalService
 - public 메서드만 트랜잭션 적용
