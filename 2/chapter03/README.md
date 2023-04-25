@@ -1,4 +1,4 @@
-# [이론] 3. 데이터 접근 기술 - 테스트
+# [이론] 3. 데이터 접근 기술 - 테스트 
 ## 1. 테스트 - 데이터베이스 연동
 - test - application.yml
 > datasource, logging.level.org.springframework.jdbc= debug
