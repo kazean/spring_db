@@ -68,7 +68,7 @@ LogRepository: //Transaction
 - 정리
 > 논리 트랜잭션중 하나라도 롤백되면 전체 트랜잭션은 롤백된다.  
 내부 트랜잭션이 롤백 되었는데, 외부 트랜잭션이 커밋되면 UnexpectedRollbackException 예외  
-rollbackOnly상황에서 커밋이 발쇵하면 UnexpectedRollbackException 예외
+rollbackOnly상황에서 커밋이 발생하면 UnexpectedRollbackException 예외
 
 ## 7.트랜잭션 전파 활용7 - 복구 REQUIRES_NEW
 - recoverException_success
