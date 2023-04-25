@@ -34,7 +34,7 @@ PK 생성에 identity(auto increment)방식, `KeyHolder`와`con.prepareStatement
 - update(): template.update()
 - findById() 
 > template.queryForObject, RowMapper
->> 결과가 업으면 EmptyResultDataAccessException, 둘 이상이면 IncorrectResultSizeDataAccessException
+>> 결과가 없으면 EmptyResultDataAccessException, 둘 이상이면 IncorrectResultSizeDataAccessException
 - findAll(): template.query()
 - itemRowMapper(): ResultSet, JdbcTemplate이 루프를 돌려주고, 개발자는 RowMapper를 구현해서 내부 코드만 채운다고 이해하면 된다.
 
@@ -46,7 +46,7 @@ PK 생성에 identity(auto increment)방식, `KeyHolder`와`con.prepareStatement
 - JdbcTemplateV1Config, ItemServiceApplicaiton - 변경
 - 데이터베이스 접근설정 - application.yml
 - 로그 추가 - application.yml
-> logging.level.orig.springframework.jdbc=debug
+> logging.level.org.springframework.jdbc=debug
 
 ## 5. JdbcTemplate - 이름 지정 파라미터 1
 - 순서대로 바인딩
