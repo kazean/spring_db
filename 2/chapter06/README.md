@@ -60,7 +60,7 @@ Service 코드 변경없이 DI 구현하려면?
 > ItemService > ItemRepositoryV2 > SpringDataJpa
 - SpringDataJpaConfig, ItemServiceApplication
 - 예외 변환
-> 스프링 데이터 JPA도 스프링 예외 추상화를 지원한다. 스프링 데이터 JPA가 만들어주는 프록시에서 이미 예외 변환을 처리하기 때무넹, @Repository와 관계없이 예외가 변환된다.
+> 스프링 데이터 JPA도 스프링 예외 추상화를 지원한다. 스프링 데이터 JPA가 만들어주는 프록시에서 이미 예외 변환을 처리하기 때문에, @Repository와 관계없이 예외가 변환된다.
 - 주의! - 하이버네이트 버그
 > 하이버네이트 5.6.6 ~ 5.6.7 like bugg
 >> ext["hibernate.version"] = "5.6.5.Final"
