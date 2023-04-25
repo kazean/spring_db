@@ -5,7 +5,7 @@
 - SQLMapper
 > JdbcTemplate, Mybatis
 - ORM
-> JPA, Hibernate, Spring Data JPA, Query dls
+> JPA, Hibernate, Spring Data JPA, Query dsl
 - SQL Mapper 주요 기능
 > 개발자는 SQL만 작성하면 SQL의 결과를 객체로 편리하게 매핑  
 JDBC를 직접 사용할 때 발생하는 여러가지 중복을 제거
@@ -39,7 +39,7 @@ Spring Data JPA, Querydsl JPA를 편리하게 사용할 수 있게 도와주는 
 - ItemServiceApplication
 > @Bean @Profile("local") TestDataInit
 - 프로필
-> application.properteis의 spring.profiles.active=local 속성을 읽어서 프로필로 사용  
+> application.properties의 spring.profiles.active=local 속성을 읽어서 프로필로 사용  
 /src/test/resources/application.properteis spring.profiles.active=test
 
 ## 5. 프로젝트 구조 설명3 - 테스트
