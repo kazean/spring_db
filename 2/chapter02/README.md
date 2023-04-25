@@ -1,4 +1,4 @@
-# [이론] 2. 데이터 접근 기술 - 스프링 JdbcTemplate
+# [이론] 2. 데이터 접근 기술 - 스프링 JdbcTemplate 
 ## 1. JdbcTemplate 소개와 설정
 SQL을 직접 사용하는 경우에 스프링이 제공하는 JdbcTemplate은 아주 좋은 선택
 - 장점
