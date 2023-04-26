@@ -155,7 +155,7 @@ String sql = "update Member set money=? where member_id = ?";
 ```
 String sql = "delete from Member where member_id = ?"
 ```
-- MemberRepositoryV0Test - 회원 tkrwp 추가
+- MemberRepositoryV0Test - 회원 삭제 추가
 ```
 assertThatThrownBy(()-> repository.findById(member.getMemberId()))
 	.isInstanceOf(NoSuchElementException.class)
